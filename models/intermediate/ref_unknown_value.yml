@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: ref_unknown_value
+    description: This model is used by dimension tables to construct an unknown record for null value references
+    tags: ["carmen_sightings", "intermediate"]
+    columns:
+      - name: unknown_key
+        description: Unknown Surrogate Key
+      - name: unknown_text
+        description: Unknown Text
+      - name: unknown_integer
+        description: Unknown Integer
+      - name: unknown_float
+        description: Unknown Decimal
+      - name: unknown_boolean
+        description: Unknown Boolean
+      - name: unknown_date
+        description: Unknown Date
+      - name: unknown_null
+        description: Unknown Null Value

@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_agent
+    description: This model is a conformed dimension for agent information
+    tags: ["carmen_sightings", "mart"]
+    columns:
+      - name: dim_agent_key
+        description: The business key uniquely identifying the agent
+        tests:
+          - unique
+          - not_null
+      - name: agent
+        description: Name of field agent filing the report
+      - name: city
+        description: HQ city where field agent files the report
+      - name: country
+        description: Country of sighting
+      - name: region
+        description: The region
+      - name: num_of_field_reports
+        description: Number of field reports by agent

@@ -1,0 +1,33 @@
+import json
+import requests
+
+def model(dbt, session):
+
+    dbt.config(
+        materialized="table"
+    )
+
+    COUNTRY_CODES_API = "https://restcountries.com/v3.1/alpha?codes"
+    # int_carmen_sightings_unioned = dbt.ref("int_carmen_sightings_unioned")
+    LIST_OF_COUNTRY_CODES = ["nz", "ke", "zm"]
+
+    list_of_country_codes = []
+    list_of_country_names = []
+
+    for country_code in LIST_OF_COUNTRY_CODES:
+        url = f"{COUNTRY_CODES_API}={country_code}"
+        req = requests.get(url)
+        res = json.loads(req.text)
+
+        if isinstance(res, list):
+
+            for json_dict in res:
+                list_of_country_codes.append(json_dict["cca2"])
+                list_of_country_names.append(json_dict["name"]["common"])
+
+    country_dict = {
+         "country_code": list_of_country_codes
+        ,"country_name": list_of_country_names
+    }
+
+    return country_dict

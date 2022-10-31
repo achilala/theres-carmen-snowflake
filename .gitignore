@@ -1,0 +1,9 @@
+target/
+dbt_packages/
+logs/
+py3-env/
+
+seeds/*.csv
+.DS_store
+.env
+.user.yml

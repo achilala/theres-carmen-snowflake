@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_witness
+    description: This model is a conformed dimension for witness information
+    tags: ["carmen_sightings", "mart"]
+    columns:
+      - name: dim_witness_key
+        description: The business key uniquely identifying the witness
+        tests:
+          - unique
+          - not_null
+      - name: witness
+        description: Name of witness sighting the perpetrator
+      - name: city
+        description: City of sighting
+      - name: country
+        description: Country of sighting
+      - name: region
+        description: The region
+      - name: num_of_sightings
+        description: Number of sightings associated with witness

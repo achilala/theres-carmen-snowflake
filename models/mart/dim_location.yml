@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: dim_location
+    description: This model is a conformed dimension for sighting location information
+    tags: ["carmen_sightings", "mart"]
+    columns:
+      - name: dim_location_key
+        description: The business key uniquely identifying the location of sightings
+        tests:
+          - unique
+          - not_null
+      - name: latitude
+        description: Latitude of sighting
+      - name: longitude
+        description: Longitude of sighting
+      - name: city
+        description: City of sighting
+      - name: country
+        description: Country of sighting
+      - name: region
+        description: The region
+      - name: num_of_sightings
+        description: Number of sightings in this location

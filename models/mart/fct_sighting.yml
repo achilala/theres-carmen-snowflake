@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: fct_sighting
+    description: This model is a transactional fact table telling the story of the sighting
+    tags: ["carmen_sightings", "mart"]
+    columns:
+      - name: dim_date_witness_key
+        description: Date of witness sighting
+      - name: dim_date_agent_key
+        description: Date of field agent filing the report
+      - name: dim_witness_key
+        description: Name of witness sighting the perpetrator
+      - name: dim_agent_key
+        description: Name of field agent filing the report
+      - name: dim_location_key
+        description: Location of sighting
+      - name: behavior
+        description: A degenerate dimension of a short description of perpetrator behavior
+      - name: has_weapon
+        description: An additive flag indicating whether or not perpetrator was armed
+      - name: has_hat
+        description: An additive flag indicating whether or not perpetrator was wearing a hat
+      - name: has_jacket
+        description: An additive flag indicating whether or not perpetrator was wearing a jacket
+      - name: is_armed_has_jacket_has_hat
+        description: An additive flag indicating whether or not perpetrator was armed, wearing a jacket and wearing a hat
+      - name: is_armed_has_jacket_no_hat
+        description: An additive flag indicating whether or not perpetrator was armed, wearing a jacket and without a hat
+      - name: is_armed_no_jacket_has_hat
+        description: An additive flag indicating whether or not perpetrator was armed, without a jacket and wearing a hat
+      - name: is_armed_no_jacket_no_hat
+        description: An additive flag indicating whether or not perpetrator was armed, without a jacket and without a hat
+      - name: is_unarmed_has_jacket_has_hat
+        description: An additive flag indicating whether or not perpetrator was unarmed, wearing a jacket and wearing a hat
+      - name: is_unarmed_has_jacket_no_hat
+        description: An additive flag indicating whether or not perpetrator was unarmed, wearing a jacket and without a hat
+      - name: is_unarmed_no_jacket_has_hat
+        description: An additive flag indicating whether or not perpetrator was unarmed, without a jacket and wearing a hat
+      - name: is_unarmed_no_jacket_no_hat
+        description: An additive flag indicating whether or not perpetrator was unarmed, without a jacket and without a hat
+      - name: num_of_days_since_sighting
+        description: Number of days since sighting and filing of report
+      - name: num_of_sightings
+        description: Number of sightings

@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: This model is a conformed date dimension useful for time-intelligence analysis. The attribute names speak for themselves.
+    tags: ["carmen_sightings", "mart"]
