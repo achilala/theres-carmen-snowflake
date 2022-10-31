@@ -16,19 +16,15 @@ cd theres-carmen-snowflake
 ## How-to Setup the Environment
 In the root folder, if none already exists, create an environment file `.env` with the following variables and values:
 ```sh
-DBT_ENVIRONMENT=PROD
-DBT_SERVER=interpol_dwh
-DBT_DATABASE=interpol_db
-DBT_PORT=5432
-DBT_SCHEMA=
-DBT_USERNAME=interpol_user
-DBT_PASSWORD=i<30p3n50urc3
-DBT_THREADS=10
-POSTGRES_USER=${DBT_USERNAME}
-POSTGRES_PASSWORD=${DBT_PASSWORD}
-POSTGRES_DB=${DBT_DATABASE}
-PGADMIN_DEFAULT_EMAIL=Aka.Chilala@gmail.com
-PGADMIN_DEFAULT_PASSWORD=${DBT_PASSWORD}
+DBT_SNOWFLAKE_ACCOUNT=""
+DBT_SNOWFLAKE_USER=""
+DBT_SNOWFLAKE_PASSWORD=""
+DBT_SNOWFLAKE_ROLE=""
+DBT_SNOWFLAKE_WAREHOUSE=""
+DBT_SNOWFLAKE_DATABASE=""
+DBT_SNOWFLAKE_SCHEMA=
+DBT_SNOWFLAKE_THREADS=10
+DBT_SNOWFLAKE_QUERY_TAG=""
 ```
 
 ## How-to Start-up the Environment
