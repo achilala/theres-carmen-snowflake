@@ -10,6 +10,8 @@ source py3-env/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install -r requirements.txt
 
+python3 convert_excel_workbook_to_csv_files.py
+
 echo "*** setup is done... ***"
 
 echo "**** testing connection... ***"
