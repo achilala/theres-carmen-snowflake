@@ -3,47 +3,47 @@
   )
 }}
 
-WITH fct_sighting AS (
-	SELECT *
-	  FROM {{ ref('fct_sighting') }}
+with fct_sighting as (
+	select *
+	  from {{ ref('fct_sighting') }}
 )
-, dim_date AS (
-	SELECT *
-	  FROM {{ ref('dim_date') }}
+, dim_date as (
+	select *
+	  from {{ ref('dim_date') }}
 )
-, dim_location AS (
-	SELECT *
-	  FROM {{ ref('dim_location') }}
+, dim_location as (
+	select *
+	  from {{ ref('dim_location') }}
 )
-, sightings_by_month AS (
-	SELECT month_of_year
+, sightings_by_month as (
+	select month_of_year
 		  ,month_name
 		  ,region
-		  ,SUM(f.num_of_sightings) AS total_sightings
-	  FROM fct_sighting f
-	 INNER JOIN dim_date date_witness ON date_witness.dim_date_key = f.dim_date_witness_key
-	 INNER JOIN dim_location l ON l.dim_location_key = f.dim_location_key
-	 GROUP BY month_of_year
+		  ,sum(f.num_of_sightings) as total_sightings
+	  from fct_sighting f
+	 inner join dim_date date_witness on date_witness.dim_date_key = f.dim_date_witness_key
+	 inner join dim_location l on l.dim_location_key = f.dim_location_key
+	 group by month_of_year
 		  ,month_name
 		  ,region
 )
-, sighting_rank AS (
-	SELECT *
-		  ,SUM(total_sightings) OVER (PARTITION BY month_name) AS month_total_sightings
-		  ,ROW_NUMBER() OVER (PARTITION BY month_name ORDER BY total_sightings DESC) AS sighting_rank
-	  FROM sightings_by_month
+, sighting_rank as (
+	select *
+		  ,sum(total_sightings) over (partition by month_name) as month_total_sightings
+		  ,row_number() over (partition by month_name order by total_sightings desc) as sighting_rank
+	  from sightings_by_month
 )
-, sighting_probability AS (
-	SELECT *
-		  ,(total_sightings / month_total_sightings) AS sighting_probability
-	  FROM sighting_rank
-	 WHERE 1 = 1
-	   AND sighting_rank = 1
+, sighting_probability as (
+	select *
+		  ,(total_sightings / month_total_sightings) as sighting_probability
+	  from sighting_rank
+	 where 1 = 1
+	   and sighting_rank = 1
 )
-SELECT month_name
+select month_name
 	  ,region
 	  ,total_sightings
 	  ,month_total_sightings
 	  ,sighting_probability
-  FROM sighting_probability
- ORDER BY month_of_year
+  from sighting_probability
+ order by month_of_year

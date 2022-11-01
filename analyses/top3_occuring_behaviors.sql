@@ -3,18 +3,18 @@
   )
 }}
 
-WITH fct_sighting AS (
-	SELECT *
-	  FROM {{ ref('fct_sighting') }}
+with fct_sighting as (
+	select *
+	  from {{ ref('fct_sighting') }}
 )
-, sightings_by_behavior AS (
-	SELECT behavior
-		  ,SUM(f.num_of_sightings) AS total_sightings
-	  FROM fct_sighting f
-	 WHERE 1 = 1
-	 GROUP BY behavior
+, sightings_by_behavior as (
+	select behavior
+		  ,sum(f.num_of_sightings) as total_sightings
+	  from fct_sighting f
+	 where 1 = 1
+	 group by behavior
 )
-SELECT *
-  FROM sightings_by_behavior
- ORDER BY total_sightings DESC
- LIMIT 3
+select *
+  from sightings_by_behavior
+ order by total_sightings desc
+ limit 3
