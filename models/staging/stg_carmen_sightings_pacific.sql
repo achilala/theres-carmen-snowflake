@@ -17,7 +17,7 @@ with carmen_sightings as (
           ,cast(nation as varchar) as country
           ,cast(town as varchar) as city
           ,cast(lat as float) as latitude
-          ,cast("long" as float) as longitude
+          ,cast(longitude as float) as longitude
           ,cast(has_weapon as boolean) as has_weapon
           ,cast(has_hat as boolean) as has_hat
           ,cast(has_jacket as boolean) as has_jacket

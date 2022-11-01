@@ -12,8 +12,8 @@ with carmen_sightings as (
 	  from {{ ref('ref_unknown_value') }}
 )
 , hash_key as (
-	select cast(strftime(date_witness, '%Y%m%d') as int) as dim_date_witness_key
-          ,cast(strftime(date_agent, '%Y%m%d') as int) as dim_date_agent_key
+	select cast(to_char(date_witness, 'yyyyMMdd') as int) as dim_date_witness_key
+          ,cast(to_char(date_agent, 'yyyyMMdd') as int) as dim_date_agent_key
           ,{{ dbt_utils.surrogate_key(['witness', 'city', 'country', 'region']) }} as dim_witness_key
           ,{{ dbt_utils.surrogate_key(['agent', 'city_agent', 'country', 'region']) }} as dim_agent_key
           ,{{ dbt_utils.surrogate_key(['latitude', 'longitude']) }} as dim_location_key
@@ -67,8 +67,8 @@ with carmen_sightings as (
       from carmen_sightings
 )
 , unknown_key as (
-    select coalesce(dim_date_witness_key, unknown_key::int) as dim_date_witness_key
-          ,coalesce(dim_date_agent_key, unknown_key::int) as dim_date_agent_key
+    select coalesce(dim_date_witness_key, to_number(unknown_key)) as dim_date_witness_key
+          ,coalesce(dim_date_agent_key, to_number(unknown_key)) as dim_date_agent_key
           ,coalesce(dim_witness_key, unknown_key) as dim_witness_key
           ,coalesce(dim_agent_key, unknown_key) as dim_agent_key
           ,coalesce(dim_location_key, unknown_key) as dim_location_key

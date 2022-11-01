@@ -18,9 +18,9 @@ with carmen_sightings as (
           ,cast(city as varchar) as city
           ,cast(lat_ as float) as latitude
           ,cast(long_ as float) as longitude
-          ,cast("armed?" as boolean) as has_weapon
-          ,cast("chapeau?" as boolean) as has_hat
-          ,cast("coat?" as boolean) as has_jacket
+          ,cast(has_weapon as boolean) as has_weapon
+          ,cast(has_hat as boolean) as has_hat
+          ,cast(has_jacket as boolean) as has_jacket
           ,cast(observed_action as varchar) as behavior
       from carmen_sightings
 )

@@ -17,12 +17,12 @@ with date_spine as (
 	  from {{ ref('ref_unknown_value') }}
 )
 , calendar as (
-  select strftime(date_day, '%Y%m%d') as dim_date_key
+  select to_char(date_day, 'yyyyMMdd') as dim_date_key
         ,date_day
-        ,strftime(date_day, '%m') as month_of_year
-        ,strftime(date_day, '%B') as month_name
-        ,strftime(date_day, '%b') as month_name_abbr
-        ,strftime(date_day, '%Y') as year
+        ,to_char(date_day, 'MM') as month_of_year
+        ,to_char(date_day, 'MMMM') as month_name
+        ,to_char(date_day, 'MON') as month_name_abbr
+        ,to_char(date_day, 'YYYY') as year
     from date_spine
 )
 , unknown_record as (
