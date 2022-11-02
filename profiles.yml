@@ -13,8 +13,8 @@ Interpol:
       warehouse: "{{ env_var('DBT_SNOWFLAKE_WAREHOUSE') }}"
       schema: "{{ env_var('DBT_SNOWFLAKE_SCHEMA') }}"
       threads: "{{ env_var('DBT_SNOWFLAKE_THREADS') | as_number }}"
-      client_session_keep_alive: False
       query_tag: "{{ env_var('DBT_SNOWFLAKE_QUERY_TAG') }}"
+      client_session_keep_alive: False
 
       # optional
       connect_retries: 0 # default 0
